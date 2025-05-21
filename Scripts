@@ -1,1 +1,54 @@
 
+/*------------------ 1 ------------------*/
+SELECT NOME, ANO FROM FILMES;
+/*------------------ 2 ------------------*/
+SELECT NOME, ANO, DURACAO 
+	FROM FILMES
+	ORDER BY ANO;
+/*------------------ 3 ------------------*/
+SELECT NOME, ANO, DURACAO 
+	FROM FILMES
+	WHERE NOME = 'de volta para o futuro'
+	ORDER BY ANO
+/*------------------ 4 ------------------*/
+SELECT NOME, ANO, DURACAO 
+	FROM FILMES
+	WHERE ANO = 1997
+
+/*------------------ 5 ------------------*/
+SELECT NOME, ANO, DURACAO 
+	FROM FILMES
+	WHERE ANO > 2000
+	ORDER BY ANO
+/*------------------ 6 ------------------*/
+SELECT NOME, ANO, DURACAO 
+	FROM FILMES
+	WHERE DURACAO BETWEEN 101 AND 150
+	ORDER BY DURACAO
+/*------------------ 7 ------------------*/
+SELECT ANO, COUNT(1) AS QUANTIDADE
+	FROM FILMES
+	GROUP BY ANO
+	ORDER BY COUNT(1) DESC
+/*------------------ 8 ------------------*/
+SELECT PrimeiroNome, UltimoNome FROM ATORES
+WHERE Genero = 'M'
+/*------------------ 9 ------------------*/
+SELECT PrimeiroNome, UltimoNome FROM ATORES
+WHERE Genero = 'F'
+ORDER BY PrimeiroNome
+/*------------------ 10 ------------------*/
+SELECT F.Nome, G.Genero FROM Filmes F
+INNER JOIN FilmesGenero FG ON (F.ID = FG.IdFilme)
+INNER JOIN  Generos G ON(FG.IdGenero = G.Id)
+
+/*------------------ 11 ------------------*/
+SELECT F.Nome, G.Genero FROM Filmes F
+INNER JOIN FilmesGenero FG ON (F.ID = FG.IdFilme)
+INNER JOIN  Generos G ON(FG.IdGenero = G.Id)
+WHERE G.Genero = 'Mistério'
+/*------------------ 12 ------------------*/
+SELECT F.Nome, A.PrimeiroNome, A.UltimoNome, EF.Papel  FROM Filmes F
+INNER JOIN  FilmesGenero FG ON (F.Id = FG.IdFilme)
+INNER JOIN  ElencoFilme EF ON (EF.IdFilme = FG.IdFilme)
+INNER JOIN  Atores A ON(A.ID = EF.IdAtor)
